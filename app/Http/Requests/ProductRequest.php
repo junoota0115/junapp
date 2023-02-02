@@ -13,7 +13,7 @@ class ProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,10 +26,10 @@ class ProductRequest extends FormRequest
         return [
             //
             'company_id'=>'required',
-            'product_name'=>'required|max:255',
+            'product_name'=>'required | max:255',
             'price'=>'required',
             'stock'=>'required',
-            'comment'=>'max:10000',
+            'comment'=>'max:10000'
 
         ];
     }
@@ -41,12 +41,12 @@ class ProductRequest extends FormRequest
             'product_name'=>'商品名',
             'price'=>'値段',
             'stock'=>'在庫',
-            'comment'=>'コメント',
+            'comment'=>'コメント'
         ];
     }
 
     public function messages(){
-        return[
+        return [
             'company_id.required'=>':attributeは必須項目です。',
             'product_name.required'=>':attributeは必須項目です。',
             'product_name.max'=>':attributeは:max字以内で入力してください。',

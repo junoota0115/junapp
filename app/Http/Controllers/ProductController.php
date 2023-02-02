@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Model\Product;
+use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\DB;
 
 
 class ProductController extends Controller
@@ -27,7 +29,13 @@ class ProductController extends Controller
     /*
     * 新規投稿
     */
-    public function exeCreate(){
+    public function exeSubmit(ProductRequest $request){
 
-    }
+    // 登録処理呼び出し
+    $product_model = new Product();
+    $products = $product_model->exeForm($request);
+
+// 処理が完了したらindexにリダイレクト
+return redirect(route('index'));
+}
 }
