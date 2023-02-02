@@ -18,7 +18,7 @@
       </p>
       @endif
       @auth
-    <a class="nav-item nav-link" href="#">新規追加</a>
+    <a class="nav-item nav-link" href="{{route('create')}}">新規追加</a>
     @endauth
 <table>
     <thead>
