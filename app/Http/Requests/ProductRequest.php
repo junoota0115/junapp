@@ -25,10 +25,10 @@ class ProductRequest extends FormRequest
     {
         return [
             //
-            'company_id'=>'required',
+            'company_id'=>'required | numeric',
             'product_name'=>'required | max:255',
-            'price'=>'required',
-            'stock'=>'required',
+            'price'=>'required | numeric',
+            'stock'=>'required | numeric',
             'comment'=>'max:10000'
 
         ];
@@ -48,9 +48,12 @@ class ProductRequest extends FormRequest
     public function messages(){
         return [
             'company_id.required'=>':attributeは必須項目です。',
+            'company_id.numeric'=>':attributeは半角数字で入力してください',
             'product_name.required'=>':attributeは必須項目です。',
             'product_name.max'=>':attributeは:max字以内で入力してください。',
             'price.required'=>':attributeは必須項目です。',
+            'price.required'=>':attributeは半角数字で入力してください',
+            'stock.required'=>':attributeは必須項目です。',
             'stock.required'=>':attributeは必須項目です。',
             'comment.10000'=>':attributeは:max字以内で入力してください。',
         ];
