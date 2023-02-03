@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class sales extends Model
+class companies extends Model
 {
     public function product(){
         //Productモデルのデータを取得
-        return $this->belongsTo('App\Model\Product');
+        return $this->belongsTo('App\Http\Model\Product');
     }
 }
