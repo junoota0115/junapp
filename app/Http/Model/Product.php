@@ -43,12 +43,19 @@ class Product extends Model
         }
     }
 
+    //商品詳細ページ表示
     public function getDetail($id){
         $product = Product::find($id);
         if (is_null($product)){
             \Session::flash('err_msg','データがありません');
             return redirect(route('Products'));
         }
+        return $product;
+    }
+
+    //商品編集画面表示
+    public function getEdit($id){
+        $product = Product::find($id);
         return $product;
     }
 }
