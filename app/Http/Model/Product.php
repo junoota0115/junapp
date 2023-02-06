@@ -43,6 +43,7 @@ class Product extends Model
         }
     }
 
+    //商品詳細ページ表示
     public function getDetail($id){
         $product = Product::find($id);
         if (is_null($product)){
@@ -51,4 +52,23 @@ class Product extends Model
         }
         return $product;
     }
+
+    //商品編集画面表示
+    public function getEdit($id){
+        $product = Product::find($id);
+        return $product;
+    }
+
+    //商品編集登録
+public function exeUp(ProductRequest $request){
+    $inputs = $request->all();
+    \DB::beginTransaction(); 
+    try{
+        $product = Product::find($inputs['id']);
+        $product->fill($request->all())->save();
+    }catch(\Throwable $e){
+    \DB::rollback();
+    abort(500);
+}
+}
 }

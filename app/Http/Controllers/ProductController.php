@@ -50,4 +50,18 @@ public function showDetail($id){
 
 }
 
+//商品編集画面表示
+public function showEdit($id){
+    $product_model = new Product();
+    $product = $product_model->getEdit($id);
+
+    return view ('products.edit',['product' => $product]);
+}
+
+//商品編集登録
+public function exeUpdate(ProductRequest $request){
+    $product_model = new Product();
+    $products = $product_model->exeUp($request);
+}
+
 }
