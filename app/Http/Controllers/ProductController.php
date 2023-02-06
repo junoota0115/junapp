@@ -40,4 +40,14 @@ class ProductController extends Controller
 // 処理が完了したらindexにリダイレクト
 return redirect(route('index'));
 }
+
+//詳細ページ表示
+public function showDetail($id){
+    $product_model = new Product();
+    $product = $product_model->getDetail($id);
+
+    return view('products.detail',['product' => $product]);
+
+}
+
 }
