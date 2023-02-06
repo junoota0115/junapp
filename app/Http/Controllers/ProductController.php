@@ -62,6 +62,8 @@ public function showEdit($id){
 public function exeUpdate(ProductRequest $request){
     $product_model = new Product();
     $products = $product_model->exeUp($request);
+    
+    return redirect(route('index'));
 }
 
 }
