@@ -40,6 +40,7 @@
             <td>{{ $product->price }}</td>
             <td>{{ $product->stock }}</td>
             <td>{{ $product->comment }}</td>
+            <td><a href="/junapp/public/products/{{$product->id }}">詳細</a></td>
 
         </tr>
     @endforeach

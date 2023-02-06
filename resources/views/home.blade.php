@@ -16,6 +16,7 @@
 
                     You are logged in!
                 </div>
+                <a class="nav-item nav-link" href="{{route('index')}}">Topページ</a>
             </div>
         </div>
     </div>
