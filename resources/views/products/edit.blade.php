@@ -6,11 +6,12 @@
     <div class="container">
         <div class="row">
             <h1>Post Form</h1>
-            <form action="{{route('submit')}}" method="post">
+            <form action="{{route('update')}}" method="post">
                 @csrf
                 <br>
                 <br>
                 <br>
+                <input type="hidden" name="id" value="{{$product->id}}">
                 <div class="form-group">
                     <label for="company_id">会社名</label>
                     <input type="text" class="form-control" id="company_id" name="company_id" placeholder="Company" value="{{$product->company_id}}">

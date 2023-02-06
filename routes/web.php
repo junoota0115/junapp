@@ -24,5 +24,5 @@ Route::get('/create', 'ProductController@showCreate')->name('create');
 Route::post('/create', 'ProductController@exeSubmit')->name('submit');
 Route::get('/products/{id}', 'ProductController@showDetail')->name('detail');
 Route::get('/edit/{id}', 'ProductController@showEdit')->name('edit');
-Route::post('/edit/{id}', 'ProductController@exeUpdate')->name('update');
+Route::post('/edit', 'ProductController@exeUpdate')->name('update');
 

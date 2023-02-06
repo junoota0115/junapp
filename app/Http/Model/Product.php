@@ -66,6 +66,7 @@ public function exeUp(ProductRequest $request){
     try{
         $product = Product::find($inputs['id']);
         $product->fill($request->all())->save();
+        DB::commit();
     }catch(\Throwable $e){
     \DB::rollback();
     abort(500);
