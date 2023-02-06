@@ -58,4 +58,10 @@ public function showEdit($id){
     return view ('products.edit',['product' => $product]);
 }
 
+//商品編集登録
+public function exeUpdate(ProductRequest $request){
+    $product_model = new Product();
+    $products = $product_model->exeUp($request);
+}
+
 }

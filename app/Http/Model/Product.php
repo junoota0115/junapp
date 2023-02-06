@@ -58,4 +58,17 @@ class Product extends Model
         $product = Product::find($id);
         return $product;
     }
+
+    //商品編集登録
+public function exeUp(ProductRequest $request){
+    $inputs = $request->all();
+    \DB::beginTransaction(); 
+    try{
+        $product = Product::find($inputs['id']);
+        $product->fill($request->all())->save();
+    }catch(\Throwable $e){
+    \DB::rollback();
+    abort(500);
+}
+}
 }
