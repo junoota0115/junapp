@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    
+    
     /*
     * 商品一覧ページ表示
     */
@@ -25,17 +27,17 @@ class ProductController extends Controller
     * 投稿ページ表示
     */
     public function showCreate(){
-        return view ('products.create');
+        $user = \Auth::user();
+        // dd($user);
+        return view ('products.create',compact('user'));
     }
 
     /*
     * 新規投稿
     */
     public function exeSubmit(ProductRequest $request){
-
-    // 登録処理呼び出し
-    $product_model = new Product();
-    $products = $product_model->exeForm($request);
+$product_model = new Product();
+$product = $product_model->exeForm($request);
 
 // 処理が完了したらindexにリダイレクト
 return redirect(route('index'));
@@ -66,4 +68,11 @@ public function exeUpdate(ProductRequest $request){
     return redirect(route('index'));
 }
 
+//商品削除
+public function exeDelete($id){
+    $product_model = new Product();
+    $product = $product_model->exeDel($id);
+
+    return redirect(route('index'));
+}
 }

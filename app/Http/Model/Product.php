@@ -14,6 +14,7 @@ class Product extends Model
       protected $table = 'products';
       protected $fillable = [
           'company_id',
+          'user_id',
           'product_name',
           'price',
           'stock',
@@ -30,17 +31,20 @@ class Product extends Model
     }
 
     public function exeForm(ProductRequest $request){
-        $inputs = $request->all(); 
-        // dd($inputs);
-        \DB::beginTransaction(); 
-        try{
-            //商品登録
-            Product::create($inputs);
-            \DB::commit();
-        }catch(\Throwable $e){
-            \DB::rollback();
-            abort(500);
-        }
+    // 登録処理呼び出し
+    $inputs = $request->all(); 
+
+    // dd($inputs);
+    \DB::beginTransaction(); 
+    try{
+        //商品登録
+        Product::create($inputs);
+        \DB::commit();
+    }catch(\Throwable $e){
+        \DB::rollback();
+        abort(500);
+    }
+\Session::flash('err_msg','登録しました。');
     }
 
     //商品詳細ページ表示
@@ -71,5 +75,18 @@ public function exeUp(ProductRequest $request){
     \DB::rollback();
     abort(500);
 }
+\Session::flash('err_msg','編集しました。');
+
+}
+
+public function exeDel($id){
+    $product = Product::find($id);
+    try{
+        Product::destroy($id);
+    }catch(\Throwable $e){
+        \DB::rollback();
+        abort(500);
+    }
+    \Session::flash('err_msg','削除しました。');
 }
 }

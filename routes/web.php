@@ -19,10 +19,19 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+//商品一覧表示
 Route::get('/', 'ProductController@showIndex')->name('index');
-Route::get('/create', 'ProductController@showCreate')->name('create');
-Route::post('/create', 'ProductController@exeSubmit')->name('submit');
+//商品登録画面表示
+Route::get('/create', 'ProductController@showCreate')->name('create')->middleware('auth');
+//商品登録
+Route::post('/create', 'ProductController@exeSubmit')->name('submit')->middleware('auth');
+//商品詳細ページ表示
 Route::get('/products/{id}', 'ProductController@showDetail')->name('detail');
-Route::get('/edit/{id}', 'ProductController@showEdit')->name('edit');
-Route::post('/edit', 'ProductController@exeUpdate')->name('update');
+//商品編集画面表示
+Route::get('/edit/{id}', 'ProductController@showEdit')->name('edit')->middleware('auth');
+//商品編集登録
+Route::post('/edit', 'ProductController@exeUpdate')->name('update')->middleware('auth');
+//商品削除
+Route::get('/delete/{id}', 'ProductController@exeDelete')->name('delete')->middleware('auth');
+
 

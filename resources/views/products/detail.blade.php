@@ -30,6 +30,7 @@
                 </tbody>
             </table>
             <a href="/junapp/public/edit/{{$product->id }}">編集</a>
+            <a href="/junapp/public/delete/{{$product->id }}">削除</a>
         </div>
     </div>
 @endsection
