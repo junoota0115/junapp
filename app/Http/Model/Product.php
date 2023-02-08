@@ -2,6 +2,7 @@
 
 namespace App\Http\Model;
 
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ProductRequest;
@@ -25,10 +26,14 @@ class Product extends Model
     //
     public function getList(){
         $products = Product::all();
-        $products = DB::table('products')->get();
-        
-        return $products;
-    }
+        // $products = DB::table('products')->get();
+        $products = Product::orderBy('created_at', 'asc')->where(function ($query) {
+        if($search = request('search')){
+            $query->where('product_name','LIKE',"%{$search}%");
+        }
+    })->paginate(20);
+    return $products;
+}
 
     public function exeForm(ProductRequest $request){
     // 登録処理呼び出し
