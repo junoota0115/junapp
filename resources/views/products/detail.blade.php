@@ -30,7 +30,9 @@
                 </tbody>
             </table>
             <a href="/junapp/public/edit/{{$product->id }}">編集</a>
-            <a href="/junapp/public/delete/{{$product->id }}">削除</a>
+            <a href="/junapp/public/delete/{{$product->id }}" onclick="return confirm('本当に削除しますか?')">削除</a>
+            <button id="update">Topページへ移動</button>
         </div>
     </div>
+    <script src="{{ asset('js/ajax.js') }}" defer></script>
 @endsection
